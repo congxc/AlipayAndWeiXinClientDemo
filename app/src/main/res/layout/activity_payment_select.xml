@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+    <TextView
+        android:padding="5dp"
+        android:textColor="#0e0d13"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/weixin"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:text="微信" />
+
+
+    <TextView
+        android:padding="8dp"
+        android:id="@+id/login_weixin_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:text="登录微信支付"
+        android:textColor="#bb0e0d13"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:padding="8dp"
+        android:id="@+id/scan_code_weixin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:text="付款码支付"
+        android:textColor="#bb0e0d13"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#88000000" />
+
+    <TextView
+        android:padding="5dp"
+        android:textColor="#0e0d13"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/alipay"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:text="支付宝" />
+
+
+    <TextView
+        android:id="@+id/login_alipay_pay"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:text="登录支付宝支付"
+        android:textColor="#bb0e0d13"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/scan_code_alipay"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:text="付款码支付"
+        android:textColor="#bb0e0d13"
+        android:textSize="15sp"/>
+
+</LinearLayout>

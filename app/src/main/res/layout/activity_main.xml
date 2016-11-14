@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="pay.com.paydemo.MainActivity">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@mipmap/ic_yitianjian"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:text="倚天剑  1080元"/>
+        <Button
+            android:id="@+id/btn_jian"
+            android:text="购买"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@mipmap/ic_tulongdao"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:text="屠龙刀 1200元"/>
+        <Button
+            android:id="@+id/btn_dao"
+            android:text="购买"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>
