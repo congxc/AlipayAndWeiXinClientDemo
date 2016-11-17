@@ -1,7 +1,7 @@
 package pay.com.paydemo;
 
 
-import pay.com.paydemo.model.TBDReceivingBill;
+import pay.com.paydemo.model.ClientOrder;
 
 /**
  * @author dengyuanming
@@ -11,6 +11,6 @@ import pay.com.paydemo.model.TBDReceivingBill;
  */
 public interface IPay {
 
-    void pay(TBDReceivingBill tbdReceivingBillBean);
+    void pay(ClientOrder clientOrder);
 
 }

@@ -11,9 +11,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import pay.com.paydemo.Constants;
 import pay.com.paydemo.IPay;
-import pay.com.paydemo.model.OrderRequest;
-import pay.com.paydemo.model.PaymentType;
-import pay.com.paydemo.model.TBDReceivingBill;
+import pay.com.paydemo.model.ClientOrder;
 import pay.com.paydemo.model.WebResult;
 import pay.com.paydemo.model.WeixinAppTradeOrder;
 import pay.com.paydemo.utils.GsonFactory;
@@ -42,7 +40,7 @@ public class WXPay implements IPay {
     }
 
     @Override
-    public void pay(final TBDReceivingBill receivingBillBean) {
+    public void pay(final ClientOrder clientOrder) {
         if(!msgApi.isWXAppInstalled()){
             Toast.makeText(context, "未安装微信", Toast.LENGTH_SHORT).show();
             return;
@@ -52,20 +50,10 @@ public class WXPay implements IPay {
             Toast.makeText(context, "当前微信版本不支持支付", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        if (TextUtils.isEmpty(receivingBillBean.getFcontractno())
-                || TextUtils.isEmpty(receivingBillBean.getFeffectdate())
-                || receivingBillBean.getFamount() <= 0
-                || receivingBillBean.getFstatus() == 2) {
-            Toast.makeText(context, "参数错误", Toast.LENGTH_SHORT).show();
-            return;
-        }
         Observable.create(new Observable.OnSubscribe<WeixinAppTradeOrder>() {
             @Override
             public void call(Subscriber<? super WeixinAppTradeOrder> subscriber) {
-                OrderRequest orderRequest =  OrderRequest.build(PaymentType.Weixin_App,receivingBillBean,context);
-                String requestData = GsonFactory.getGson().toJson(orderRequest);
-
+                String requestData = GsonFactory.getGson().toJson(clientOrder);
                 String responseData = HttpUtils.httpPost(Constants.WEIXIN_CHARGE_ORDER, requestData);
                 if (TextUtils.isEmpty(responseData)) {
                     subscriber.onError(new Exception("获取订单失败"));

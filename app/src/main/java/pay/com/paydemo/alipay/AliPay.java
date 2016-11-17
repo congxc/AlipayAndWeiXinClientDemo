@@ -14,11 +14,10 @@ import java.util.Map;
 import pay.com.paydemo.Constants;
 import pay.com.paydemo.IPay;
 import pay.com.paydemo.model.AlipayAppTradeOrder;
+import pay.com.paydemo.model.ClientOrder;
 import pay.com.paydemo.model.OrderQuery;
 import pay.com.paydemo.model.OrderQueryRsp;
-import pay.com.paydemo.model.OrderRequest;
 import pay.com.paydemo.model.PaymentType;
-import pay.com.paydemo.model.TBDReceivingBill;
 import pay.com.paydemo.model.WebResult;
 import pay.com.paydemo.utils.HttpUtils;
 import rx.Observable;
@@ -40,20 +39,11 @@ public class AliPay implements IPay {
     }
 
     @Override
-    public void pay(final TBDReceivingBill receivingBillBean) {
-        if (TextUtils.isEmpty(receivingBillBean.getFcontractno())
-                || TextUtils.isEmpty(receivingBillBean.getFeffectdate())
-                || receivingBillBean.getFamount() <= 0
-                || receivingBillBean.getFstatus() == 2) {
-//            ViewUtils.showToast(context, JBApplication.getResStr(R.string.parameter_incorrect));
-            Toast.makeText(context, "参数错误", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    public void pay(final ClientOrder clientOrder) {
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                OrderRequest orderRequest =  OrderRequest.build(PaymentType.Alipay_App,receivingBillBean,context);
-                String requestData = getGson().toJson(orderRequest);
+                String requestData = getGson().toJson(clientOrder);
                 String responseData = HttpUtils.httpPost(Constants.ALIPAY_CHARGE_ORDER, requestData);
 
                 if (TextUtils.isEmpty(responseData)) {
@@ -183,7 +173,6 @@ public class AliPay implements IPay {
                     @Override
                     public void onNext(OrderQueryRsp orderQueryRsp) {
                         if(orderQueryRsp != null){
-                            TBDReceivingBill receivingBill = TBDReceivingBill.convert(orderQueryRsp);
                             //真正支付成功
                             Toast.makeText(context, "支付成功", Toast.LENGTH_SHORT).show();
                         }

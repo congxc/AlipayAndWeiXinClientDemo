@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
+import pay.com.paydemo.utils.GsonFactory;
+
 /**
  * 下单请求
  */
@@ -12,7 +14,7 @@ public class OrderRequest {
     private String FControlUnitID;//公司
     private String FEquipmentNo;
     private String FUserId;
-    private String Fcontractno;
+    private String Fcontractno;//合同号
     private String subject;
     private double total_fee;
     private String body;
@@ -84,16 +86,15 @@ public class OrderRequest {
 
 
 
-    public static OrderRequest build(PaymentType paymentType,TBDReceivingBill receivingBillBean,Context context){
+    public static OrderRequest build(PaymentType paymentType,ClientOrder clientOrder,Context context){
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setPaymentType(paymentType.getValue());
-//        orderRequest.setSubject("待付产品费用");
-        orderRequest.setTotal_fee(receivingBillBean.getFamount());
-        orderRequest.setFcontractno(receivingBillBean.getFcontractno());
-//        orderRequest.setFUserId(LoginUserInfoMannager.getInstance().getTbdUser().getFID());
-        orderRequest.setFControlUnitID(receivingBillBean.getFcontrolunitid());
-//        orderRequest.setFEquipmentNo(JBApplication.getDeviceId());
+        orderRequest.setSubject(clientOrder.getSubject());
+        orderRequest.setTotal_fee(clientOrder.getFToalAmount());
+        orderRequest.setFUserId(clientOrder.getFUserID());
+        orderRequest.setFControlUnitID(clientOrder.getFcontrolUnitID());
         orderRequest.create_ip = getDeviceIp(context);
+        orderRequest.setBody(GsonFactory.getGson().toJson(clientOrder));
         return orderRequest;
     }
     /**

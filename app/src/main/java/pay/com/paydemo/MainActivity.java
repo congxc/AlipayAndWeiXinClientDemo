@@ -11,16 +11,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         findViewById(R.id.btn_jian).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,PaymentSelectActivity.class));
+                Intent intent = new Intent(MainActivity.this, PaymentSelectActivity.class);
+                intent.putExtra("material",0);
+                startActivity(intent);
             }
         });
         findViewById(R.id.btn_dao).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,PaymentSelectActivity.class));
+                Intent intent = new Intent(MainActivity.this, PaymentSelectActivity.class);
+                intent.putExtra("material",1);
+                startActivity(intent);
             }
         });
 
